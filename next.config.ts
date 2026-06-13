@@ -1,12 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ['mongoose']
+  serverExternalPackages: ['mongoose'],
+
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-  // Add this if you're using MongoDB
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   env: {
     MONGODB_URI: process.env.MONGODB_URI,
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

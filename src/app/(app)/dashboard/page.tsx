@@ -7,7 +7,7 @@ import { Message, User } from '@/models/User'
 import { acceptMessageSchema } from '@/schemas/acceptMessageSchema'
 import { ApiResponse } from '@/types/ApiResponse'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { Loader2, RefreshCcw } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { Controller } from 'react-hook-form'
 
-const page=()=> {
+const DashboardPage=()=> {
   const [messages,setmessages]=useState<Message[]>([])
   const [isLoading,setIsLoading]=useState(false)
   const [isSwitchLoading,setIsSwitchLoading]=useState(false)
@@ -32,8 +32,8 @@ const page=()=> {
   }
 })
 
-  const {register,watch,setValue}=form
-  const acceptMessages= watch('acceptMessage')
+  const {setValue}=form
+  //const acceptMessages= watch('acceptMessage')
 
   const fetchAcceptMessage=useCallback(async()=>{
     setIsSwitchLoading(true)
@@ -41,7 +41,7 @@ const page=()=> {
       const response=await axios.get('/api/accept-messages')
       setValue('acceptMessage',response.data.isAcceptingMessage)
     }catch(error){
-      const axiosError = error as AxiosError<ApiResponse>
+      //const axiosError = error as AxiosError<ApiResponse>
       toast('Error')
     }finally{
       setIsSwitchLoading(false)
@@ -58,7 +58,7 @@ const page=()=> {
         toast("Error")  
       }
     }catch(error){
-      const axiosError = error as AxiosError<ApiResponse>
+      //const axiosError = error as AxiosError<ApiResponse>
       toast('Error')
 
     }finally{
@@ -75,7 +75,8 @@ const page=()=> {
     fetchMessages()
     fetchAcceptMessage()
   },[session,setValue,fetchAcceptMessage,fetchMessages])
-  const handleSwitchChange= async()=>{
+
+  /*const handleSwitchChange= async()=>{
     try{
       const response=await axios.post<ApiResponse>('/api/accept-messages',{
         acceptMessages:!acceptMessages
@@ -83,11 +84,12 @@ const page=()=> {
       setValue('acceptMessage',!acceptMessages)
       toast(response.data.message)
     }catch(error){
-      const axiosError = error as AxiosError<ApiResponse>
+      //const axiosError = error as AxiosError<ApiResponse>
       toast('Error')
 
     }
-  }
+  }*/
+
   if(!session||!session.user){
     return <div>Please login</div>
   }
@@ -166,7 +168,7 @@ const page=()=> {
       </Button>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
         {messages.length > 0 ? (
-          messages.map((message, index) => (
+          messages.map((message) => (
             <MessageCard
               key={message._id}
               message={message}
@@ -181,4 +183,4 @@ const page=()=> {
   );
 }
 
-export default page
+export default DashboardPage

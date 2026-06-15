@@ -1,6 +1,6 @@
-# 🔐 Anonsage – Next.js Authentication with Email Verification
+# 🚀 Incognote – Anonymous Feedback Platform
 
-True Feedback is a secure authentication system built using **Next.js**, **NextAuth**, **MongoDB**, and **Resend**. It allows users to sign up, receive a verification code by email, and log in only after verification.
+Incognote is a full-stack anonymous feedback platform where users can create accounts, receive public profile links, collect anonymous messages, and manage them through a secure dashboard.
 
 ---
 
@@ -17,14 +17,19 @@ True Feedback is a secure authentication system built using **Next.js**, **NextA
 
 ---
 
-## ✅ Features
+## 🛠️ Tech Stack
 
-- Email verification using Resend
-- Authentication with NextAuth
-- Modern UI with TailwindCSS and shadcn/ui
-- Type safety with TypeScript
-- Schema validation using Zod
-- Secure backend API routes
+- Next.js 15
+- TypeScript
+- MongoDB
+- Mongoose
+- NextAuth
+- Resend
+- Tailwind CSS
+- shadcn/ui
+- Zod
+- Axios
+- Vercel
 
 ---
 
@@ -40,6 +45,9 @@ True Feedback is a secure authentication system built using **Next.js**, **NextA
 - **UI Components:** shadcn/ui
 
 ---
+## 🌐 Live Demo
+
+https://incognote-theta.vercel.app/
 
 ## 📁 Project Structure
 
@@ -80,7 +88,7 @@ Create a `.env.local` file in the root and configure the following:
 
 ```env
 # MongoDB connection
-DATABASE_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/db
+MONGODB_URI==mongodb+srv://<username>:<password>@cluster.mongodb.net/db
 
 # Auth
 NEXTAUTH_SECRET=some-random-secret

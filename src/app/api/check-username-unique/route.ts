@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 
     const result = UsernameQuerySchema.safeParse(queryParam);
 
-    console.log("Validation Result:", result);
+    //console.log("Validation Result:", result);
 
     if (!result.success) {
       console.log("Validation Error:", result.error.format());

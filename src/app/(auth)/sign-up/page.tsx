@@ -62,7 +62,7 @@ export default function SignUpForm() {
     setisSubmitting(true)
     try{
       const response= await axios.post<ApiResponse>('/api/sign-up',data)
-      toast('Success')
+      toast('Verification email sent successfully.')
       router.replace(`/verify/${username}`)
     }catch(error){
       console.error("Error in signup of user",error)
@@ -84,7 +84,7 @@ export default function SignUpForm() {
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Join Incognote
             </h1>
-          <p className="mb-4">Sign up to start your anonymous adventure</p>
+            <p className="mb-4">Create your Incognote account and start collecting anonymous feedback</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -104,7 +104,7 @@ export default function SignUpForm() {
                     
                   </FormControl>
                     {isCheckingUsername && <Loader2 className="animate-spin"/>}
-                    <p className={`text-sm ${usernameMessage==="Username is unique" ?'text-green-500':'text-red-500'}`}>test {usernameMessage}</p>
+                       <p className={`text-sm ${usernameMessage==="Username is unique" ?'text-green-500':'text-red-500'}`}>{usernameMessage}</p>
 
 
                   <FormMessage />

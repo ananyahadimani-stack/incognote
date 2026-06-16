@@ -65,7 +65,7 @@ export default function SignInForm() {
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Sign In to Incognote
             </h1>
-          <p className="mb-4">Sign in to start your anonymous adventure</p>
+          <p className="mb-4">Sign in to manage your anonymous feedback.</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -101,9 +101,11 @@ export default function SignInForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isSubmitting}>
-              SignIn
-            </Button>
+            <Button type="submit" disabled={isSubmitting}>{isSubmitting ? (<>
+           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Signing In...</>  ) : (
+            'Sign In')}
+          </Button>  
           </form>
         </Form>
         <div className="text-center mt-4">

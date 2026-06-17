@@ -88,8 +88,10 @@ return <div>Please login</div>
 
 const { username } = session.user as User
 
-const baseUrl = `${window.location.protocol}//${window.location.host}`
-const profileUrl = `${baseUrl}/u/${username}`
+const profileUrl =
+  typeof window !== "undefined"
+    ? `${window.location.origin}/u/${username}`
+    : ""
 
 const copyToClipboard = () => {
 navigator.clipboard.writeText(profileUrl)
@@ -174,14 +176,15 @@ Your Dashboard </h1>
 
   <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
     {messages.length > 0 ? (
-      messages.map((message) => (
-        <MessageCard
-          key={message._id}
-          message={message}
-          onMessageDelete={handleDeleteMessage}
-        />
-      ))
-    ) : (
+  messages.map((message) => (
+    <div
+      key={message._id}
+      className="border rounded p-4">
+      {message.content}
+    </div>
+  ))
+) : (
+    
       <p className="text-muted-foreground">
         No messages yet. Share your public link to start
         receiving anonymous feedback.

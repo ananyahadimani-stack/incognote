@@ -21,6 +21,8 @@ export async function POST(request:Request){
             },{status:400})
 
 
+
+            .
     }
     const userId =user._id
     const {acceptMessages} =await request.json()

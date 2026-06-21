@@ -19,6 +19,7 @@ const DashboardPage = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setIsSwitchLoading] = useState(false)
+  const [profileUrl, setProfileUrl] = useState('') // FIX: moved window access into state
 
   const handleDeleteMessage = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId))
@@ -43,7 +44,7 @@ const DashboardPage = () => {
 
       setValue(
         'acceptMessage',
-        response.data.isAcceptingMessages // FIX: was isAcceptingMessage
+        response.data.isAcceptingMessages
       )
     } catch {
       toast('Failed to fetch message settings.')
@@ -67,6 +68,7 @@ const DashboardPage = () => {
     }
   }, [])
 
+  // FIX: all hooks must run unconditionally, before any early return
   useEffect(() => {
     if (!session?.user) return
 
@@ -74,14 +76,17 @@ const DashboardPage = () => {
     fetchAcceptMessage()
   }, [session, fetchMessages, fetchAcceptMessage])
 
+  useEffect(() => {
+    // FIX: window is only accessed client-side, after mount — prevents hydration mismatch
+    if (!session?.user) return
+    const { username } = session.user as User
+    const baseUrl = `${window.location.protocol}//${window.location.host}`
+    setProfileUrl(`${baseUrl}/u/${username}`)
+  }, [session])
+
   if (!session?.user) {
     return <div>Please login</div>
   }
-
-  const { username } = session.user as User
-
-  const baseUrl = `${window.location.protocol}//${window.location.host}`
-  const profileUrl = `${baseUrl}/u/${username}`
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl)

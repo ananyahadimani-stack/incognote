@@ -1,5 +1,10 @@
 # 🚀 Incognote – Anonymous Feedback Platform
 
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://typescriptlang.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)](https://mongodb.com)
+[![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel)](https://vercel.com)
+
 Incognote is a full-stack anonymous feedback platform built with Next.js, TypeScript, MongoDB, and NextAuth.
 
 Users can create accounts, verify their email addresses, generate a public profile link, receive anonymous messages, and manage them through a secure dashboard.
@@ -162,13 +167,13 @@ http://localhost:3000
 
 ## 📸 Screenshots
 
-Add screenshots here later:
+| Home | Sign In |
+|------|---------|
+| ![Home](./screenshots/home.png) | ![Sign In](./screenshots/signin.png) |
 
-* Landing Page
-* Sign Up Page
-* Sign In Page
-* Dashboard
-* Public User Page
+| Dashboard | Public Profile |
+|-----------|-----------------|
+| ![Dashboard](./screenshots/dashboard.png) | ![Public Profile](./screenshots/public-profile.png) |
 
 ---
 
